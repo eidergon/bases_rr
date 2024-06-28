@@ -51,6 +51,18 @@ btn.click(function () {
     });
 });
 
+a.click(function (e) {
+    e.preventDefault();
+
+    $.ajax({
+        url: "view/descargar_base.html",
+        success: function (result) {
+            $("main").html(result);
+            $('#loader').addClass('hidden');
+        }
+    });
+});
+
 $(document).on('submit', '#cargar_base', function (e) {
     e.preventDefault();
     $('#loader').removeClass('hidden');

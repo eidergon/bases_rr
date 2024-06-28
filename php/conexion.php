@@ -1,8 +1,8 @@
 <?php
-// $servername = "10.206.173.188:3306";
-// $username = "mysqldb";
-// $password = "0n3C0nt4ct1nt3rn4c10n4l.06++";
-// $database = "nomina";
+// $servername = "10.206.69.138:11059";
+// $username = "eider_dev";
+// $password = "65KehoBEb6t3";
+// $database = "base_rr";
 
 $servername = "localhost";
 $username = "root";

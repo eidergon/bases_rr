@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Buscador Personalizado</title>
+    <script>
+        function mostrarOpciones() {
+            var columnas = document.getElementsByName('columnas[]');
+            var opciones = document.getElementById('opciones');
+
+            // Limpiar las opciones actuales
+            while (opciones.firstChild) {
+                opciones.removeChild(opciones.firstChild);
+            }
+
+            // Agregar opciones basadas en las columnas seleccionadas
+            for (var i = 0; i < columnas.length; i++) {
+                if (columnas[i].checked) {
+                    var columna = columnas[i].value;
+                    var div = document.createElement('div');
+
+                    if (columna == 'estado') {
+                        div.innerHTML = 'Estado: <select name="estado">' +
+                            '<option value="ACTIVO">ACTIVO</option>' +
+                            '<option value="CANCELADO">CANCELADO</option>' +
+                            '<option value="CANCELADO DEBE">CANCELADO DEBE</option>' +
+                            '<option value="NO RECUPERABLE">NO RECUPERABLE</option>' +
+                            '</select>';
+                    } else if (columna == 'ubicacion') {
+                        div.innerHTML = 'Ubicación: <input type="text" name="ubicacion">';
+                    } else if (columna == 'cant_servicios') {
+                        div.innerHTML = 'Cantidad de Servicios: <input type="range" name="cant_servicios" min="1" max="8" oninput="this.nextElementSibling.value = this.value">' +
+                                        '<output>5</output>';
+                    } else if (columna == 'valor2') {
+                        div.innerHTML = 'Valor: <input type="number" name="valor_min" placeholder="Mínimo"> - <input type="number" name="valor_max" placeholder="Máximo">';
+                    } else if (columna == 'fecha_actualizacion') {
+                        div.innerHTML = 'Fecha de Actualización: <input type="date" name="fecha_actualizacion">';
+                    }
+
+                    opciones.appendChild(div);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Buscador Personalizado</h1>
+    <form action="view/buscar.php" method="POST">
+        <label for="columnas">Seleccione las columnas:</label><br>
+        <input type="checkbox" name="columnas[]" value="estado" onchange="mostrarOpciones()"> Estado<br>
+        <input type="checkbox" name="columnas[]" value="ubicacion" onchange="mostrarOpciones()"> Ubicación<br>
+        <input type="checkbox" name="columnas[]" value="cant_servicios" onchange="mostrarOpciones()"> Cantidad de Servicios<br>
+        <input type="checkbox" name="columnas[]" value="valor2" onchange="mostrarOpciones()"> Valor<br>
+        <input type="checkbox" name="columnas[]" value="fecha_actualizacion" onchange="mostrarOpciones()"> Fecha de Actualización<br>
+        <br>
+        <div id="opciones"></div>
+        <br>
+        <input type="submit" value="Buscar">
+    </form>
+</body>
+</html>
