@@ -1,7 +1,7 @@
 <?php
 ini_set('max_execution_time', 600); // Aumenta el tiempo máximo de ejecución a 600 segundos
 
-require_once 'conexion.php';
+require_once 'php/conexion.php';
 
 // Array para almacenar la respuesta
 $response = array();
@@ -9,8 +9,8 @@ $response = array();
 // Verificar si se ha enviado una petición POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar si se ha subido un archivo
-    if (isset($_FILES["archivos"]["tmp_name"])) {
-        $file = $_FILES["archivos"]["tmp_name"];
+    if (isset($_FILES["file"]["tmp_name"])) {
+        $file = $_FILES["file"]["tmp_name"];
         $tabla = $_POST["base"];
         if ($tabla == "numeros_consultar") {
             $columna = 'numero';
